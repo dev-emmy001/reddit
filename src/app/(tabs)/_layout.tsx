@@ -1,8 +1,14 @@
 import { Tabs } from "expo-router";
-import { House, InboxIcon, MessageCircleMoreIcon, PlusCircle, Users } from "lucide-react-native";
+import {
+  Bell,
+  House,
+  InboxIcon,
+  MessageCircleMore,
+  PlusCircle,
+} from "lucide-react-native";
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "black" }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: "black" , tabBarStyle: { borderTopWidth: 0, elevation: 0 }}}>
       <Tabs.Screen
         name="index"
         options={{
@@ -12,13 +18,14 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => <House strokeWidth={2} color={color} />,
         }}
       />
+
       <Tabs.Screen
-        name="chat"
+        name="answers"
         options={{
-          headerTitle: "Chat",
-          title: "Chat",
+          headerTitle: "Answers",
+          title: "Answers",
           tabBarIcon: ({ color }) => (
-            <MessageCircleMoreIcon strokeWidth={2} color={color} />
+            <InboxIcon strokeWidth={2} color={color} />
           ),
         }}
       />
@@ -33,23 +40,21 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="chat"
+        options={{
+          headerTitle: "Chat",
+          title: "Chat",
+          tabBarIcon: ({ color }) => (
+            <MessageCircleMore strokeWidth={2} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="inbox"
         options={{
           headerTitle: "Inbox",
           title: "Inbox",
-          tabBarIcon: ({ color }) => (
-            <InboxIcon strokeWidth={2} color={color} />
-          ),
-        }}
-      />
-       <Tabs.Screen
-        name="communities"
-        options={{
-          headerTitle: "Communities",
-          title: "Communities",
-          tabBarIcon: ({ color }) => (
-            <Users strokeWidth={2} color={color} />
-          ),
+          tabBarIcon: ({ color }) => <Bell strokeWidth={2} color={color} />,
         }}
       />
     </Tabs>
