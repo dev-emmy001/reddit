@@ -1,4 +1,3 @@
-import posts from "@/assets/data/posts.json";
 import { formatDistanceToNowStrict } from "date-fns";
 import {
     ArrowBigDown,
@@ -8,9 +7,12 @@ import {
     MessageCircle,
 } from "lucide-react-native";
 import { Image, Text, View } from "react-native";
+import { Post } from "../types";
 
-export default function PostCard() {
-  const post = posts[0];
+type PostCardProps = {
+    post: Post;
+}
+export default function PostCard({post}: PostCardProps) {
   return (
     <View className="p-4 border-b-gray-300 border-b">
       {/* userprofile / post date / joinbutton section */}
@@ -35,7 +37,7 @@ export default function PostCard() {
         {post.image && (
           <Image
             source={{ uri: post.image }}
-            className="w-full rounded-lg"
+            className="w-full rounded-2xl"
             style={{ aspectRatio: 4 / 3 }}
           />
         )}
@@ -46,25 +48,25 @@ export default function PostCard() {
         {/* // votes and comments // */}
         <View className="flex-row items-center gap-4">
           {/* // upvote and downvote // */}
-          <View className="flex-row items-center border-hairline border-gray-400  rounded-full p-2 gap-3">
+          <View className="flex-row items-center border border-gray-400  rounded-full p-2 gap-3">
             <ArrowBigUp size={18} strokeWidth={1.5} />
             <Text>{post.upvotes}</Text>
             <ArrowBigDown size={18} strokeWidth={1.5} />
           </View>
           {/* // comment // */}
-          <View className="flex-row items-center border-hairline border-gray-400  rounded-full p-2 gap-1">
+          <View className="flex-row items-center border border-gray-400  rounded-full p-2 gap-1">
             <MessageCircle size={18} strokeWidth={1.5} />
-            <Text>{post.upvotes}</Text>
+            <Text>{post.nr_of_comments}</Text>
           </View>
         </View>
         {/* // award and share // */}
         <View className="flex-row items-center gap-4">
           {/* // award // */}
-          <View className="flex-row items-center border-hairline border-gray-400 rounded-full p-2 gap-1">
+          <View className="flex-row items-center border border-gray-400 rounded-full p-2 gap-1">
             <Award size={18} strokeWidth={1.5} />
           </View>
           {/* // share // */}
-          <View className="flex-row items-center border-hairline border-gray-400  rounded-full p-2 gap-1">
+          <View className="flex-row items-center border border-gray-400  rounded-full p-2 gap-1">
             <ArrowBigRight size={18} strokeWidth={1.5} />
           </View>
         </View>

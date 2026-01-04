@@ -1,10 +1,15 @@
+import posts from "@/assets/data/posts.json";
 import PostCard from "@/src/components/Postcard";
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 export default function Homepage() {
  
   return (
     <View className="bg-white">
-        <PostCard />
+        <FlatList
+          data={posts}
+          keyExtractor={(post) => post.id}
+          renderItem={({ item }) => <PostCard post={item} />}
+        />
     </View>
   );
 }
