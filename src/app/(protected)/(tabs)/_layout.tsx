@@ -1,14 +1,23 @@
+import { useAuth } from "@clerk/clerk-expo";
 import { Tabs } from "expo-router";
 import {
   Bell,
   House,
   InboxIcon,
+  LogOut,
   MessageCircleMore,
-  PlusCircle,
+  PlusCircle
 } from "lucide-react-native";
 export default function TabsLayout() {
+  const {signOut} = useAuth();
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "black" , tabBarStyle: { borderTopWidth: 0, elevation: 0 }}}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: "black" ,
+    headerRight: () => <LogOut
+    name="log-out" size={20} color="black"
+    className="p-4"
+    onPress={()=> signOut()}
+    />,
+    tabBarStyle: { borderTopWidth: 0, elevation: 0 }}}>
       <Tabs.Screen
         name="index"
         options={{
